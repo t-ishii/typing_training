@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/PlayerUI.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Script" ]
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 0.776471, 0.396078, 1 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="PlayerUI" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 1, 1 )
+
+[node name="PopTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+_sections_unfolded = [ "Script" ]
+
+[connection signal="update_score" from="." to="PlayerUI" method="_on_update_score"]
+[connection signal="timeout" from="PopTimer" to="." method="_pop_alphabet"]
